@@ -1,6 +1,6 @@
 CXX           = gcc-14
 
-SRC           = main.cpp akinator.cpp user_interface.cpp
+SRC           = main.cpp Akinator.cpp UserInterface.cpp DataBase.cpp
 SUBMODULE_SRC = Color-printf/color_printf.cpp
 
 BUILD_DIR     = ./build/
@@ -36,6 +36,12 @@ vpath %.cpp $(SRC_DIR)
 .PHONY : clean all
 
 all : $(addprefix $(SRC_DIR), $(SRC))
+	clear
+	@mkdir -p build
+	$(CXX) $(CFLAGS) $^ $(SUBMODULE_SRC) -o $(addprefix $(BUILD_DIR), $(TARGET))
+	@printf "$(GREEN_TEXT)$(TARGET) COMPILED$(DEFAULT_TEXT)\n"
+
+run : $(addprefix $(SRC_DIR), $(SRC))
 	clear
 	@mkdir -p build
 	$(CXX) $(CFLAGS) $^ $(SUBMODULE_SRC) -o $(addprefix $(BUILD_DIR), $(TARGET))

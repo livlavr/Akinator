@@ -3,14 +3,34 @@
 
 #include "custom_asserts.h"
 #include "tree.h"
-#include "akinator.h"
-#include "user_interface.h"
+#include "Akinator.h"
+#include "UserInterface.h"
+#include "DataBase.h"
 
-TYPE_OF_ERROR AkinatorInit(Akinator* akinator) {
+TYPE_OF_ERROR AkinatorInit(Akinator* akinator, int argc, char** argv) {
     akinator->tree = (Tree<char*>*)calloc(1, sizeof(Tree<char*>));
     char* root_value = (char*)calloc(30, 1);
-    strcpy(root_value, "хуй пойми кто");
-    TreeInit(akinator->tree, root_value);
+    SetDataBase(akinator, argc, argv);
+    // strcpy(root_value, "хуй пойми кто");
+    // TreeInit(akinator->tree, root_value);//TODO
+
+    return SUCCESS;
+}
+
+TYPE_OF_ERROR StartGame(Akinator* akinator) {
+    check_expression(akinator, POINTER_IS_NULL);
+
+    switch(akinator->game_mode) {
+        case guess_mode:
+            PlayAkinator(akinator, akinator->tree->root);
+            return SUCCESS;
+        case quit_without_saving:
+            return SUCCESS;
+        case quit:
+            return SUCCESS;
+        default:
+            warning(false, PROGRAM_ERROR);
+    }
 
     return SUCCESS;
 }
@@ -36,6 +56,8 @@ TYPE_OF_ERROR PlayAkinator(Akinator* akinator, TreeNode<char*>* node) {
             case no:
                 AddCharacter(akinator, node);
 
+                return SUCCESS;
+            case zaebal:
                 return SUCCESS;
             default:
                 printf("Упс, что-то случилсоь :(\n");
@@ -63,34 +85,37 @@ UserAnswer GetAnswer() {
     int  akinator_patience      = 0;
     int  tries_balance          = 0;
 
-    while(akinator_patience < MAX_TRIES_NUMBER) {
+    while(akinator_patience <= MAX_TRIES_NUMBER) {
         tries_balance = MAX_TRIES_NUMBER - akinator_patience;
         scanf("%s", answer);
         if(answer[1] == YES || answer[1] == NO) break;
 
         if(tries_balance > 10) {
-            printf("\nЧто-то я не понял, так да или нет? [д/н] ");
+            printf("Что-то я не понял, так да или нет? [д/н] ");
         }
 
-        else if(3 < tries_balance <= 10) {
-            printf("\nБро хватит, у тебя осталось %d попыток."
+        else if(tries_balance > 3 && tries_balance <= 10) {
+            printf("Бро хватит, у тебя осталось %d попыток. "
                     "Просто введи \"д\" или \"н\" вот сюда -> ",
                     tries_balance);
         }
 
         else if(tries_balance > 1){
-            printf("\nТы решил мне нервы потрепать? Ок. Осталось %d попыток [д/н] ",
+            printf("Ты решил мне нервы потрепать? Ок. Осталось %d попыток [д/н] ",
                     tries_balance);
+        }
+        else if(tries_balance == 1){
+            printf("Даю последний шанс [д/н] ");
         }
 
         akinator_patience++;
     }
 
     if(answer[1] != YES && answer[1] != NO) {
-        printf("\nВсё, заебал...\n");
+        printf("Всё, заебал...\n");
         sleep(1);
 
-        return no;
+        return zaebal;
     }
     else {
         if(answer[1] == YES) return yes;
@@ -114,7 +139,10 @@ TYPE_OF_ERROR AddCharacter(Akinator* akinator, TreeNode<char*>* node) {
 
     ConnectCharacterToTree(akinator, node, attribute, character);
     printf("Окей, я запомнил ;)\n");
+
     sleep(1);
+
+    TreeDump(akinator->tree);
 
     return SUCCESS;
 }
@@ -150,11 +178,16 @@ TYPE_OF_ERROR LinkRootCharacter(Akinator* akinator, TreeNode<char*>* node,
     TreeNode<char*>* character_node = NULL;
     CreateNode<char*>(&character_node, character);
 
+
+    _WhaitForValidAnswer(LinkNodes<char*>(attribute_node, node, LEFT_SIDE),
+                        attribute_node, attribute, NO_TREE_ERRORS,
+                        "Упс, в акинаторе уже есть %s, придумай что-нибудь другое:\n");
+
+    _WhaitForValidAnswer(LinkNodes<char*>(attribute_node, character_node, RIGHT_SIDE),
+                        character_node, character, NO_TREE_ERRORS,
+                        "Упс, в акинаторе уже есть %s, придумай что-нибудь другое:\n");
+
     akinator->tree->root = attribute_node;
-
-    LinkNodes<char*>(attribute_node, node, LEFT_SIDE);
-
-    LinkNodes<char*>(attribute_node, character_node, RIGHT_SIDE);
 
     return SUCCESS;
 }
@@ -172,16 +205,25 @@ TYPE_OF_ERROR LinkCharacter(Akinator* akinator, TreeNode<char*>* node,
     }
     else {
         side = LEFT_SIDE;
+        node->parent->left = NULL;
     }
 
     TreeNode<char*>* attribute_node = NULL;
     CreateNode<char*>(&attribute_node, attribute);
-    LinkNodes<char*>(node->parent, attribute_node, side);
+    _WhaitForValidAnswer(LinkNodes<char*>(node->parent, attribute_node, side),
+                        attribute_node, attribute, NO_TREE_ERRORS,
+                        "Упс, в акинаторе уже есть %s, придумай что-нибудь другое:\n");
 
     TreeNode<char*>* character_node = NULL;
     CreateNode<char*>(&character_node, character);
-    LinkNodes<char*>(attribute_node, character_node, RIGHT_SIDE);
-    LinkNodes<char*>(attribute_node, node, LEFT_SIDE);
+    _WhaitForValidAnswer(LinkNodes<char*>(attribute_node, node, LEFT_SIDE),
+                        attribute_node, attribute, NO_TREE_ERRORS,
+                        "Упс, в акинаторе уже есть %s, придумай что-нибудь другое:\n");
+
+    _WhaitForValidAnswer(LinkNodes<char*>(attribute_node, character_node, RIGHT_SIDE),
+                        character_node, character, NO_TREE_ERRORS,
+                        "Упс, в акинаторе уже есть %s, придумай что-нибудь другое:\n");
+    TreeDump(akinator->tree);
 
     return SUCCESS;
 }
@@ -198,9 +240,15 @@ TYPE_OF_ERROR QuitWithoutSaving(Akinator* akinator) {
 TYPE_OF_ERROR AkinatorDtor(Akinator* akinator) {
     switch(akinator->game_mode) {
         case quit:
+            UpdateDataBase(akinator);
         case quit_without_saving:
             TreeDtor(akinator->tree);
+            free(akinator->input_data_base);
+            free(akinator->output_data_base);
+
             return SUCCESS;
+        default:
+            warning(false, PROGRAM_ERROR);
     }
 
     return SUCCESS;

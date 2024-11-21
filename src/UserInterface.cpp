@@ -3,8 +3,8 @@
 #include "tree.h"
 #include "custom_asserts.h"
 #include "color_printf.h"
-#include "akinator.h"
-#include "user_interface.h"
+#include "Akinator.h"
+#include "UserInterface.h"
 
 
 TYPE_OF_ERROR MainMenu(Akinator* akinator) {
@@ -51,30 +51,12 @@ TYPE_OF_ERROR ChooseGameMode(Akinator* akinator) {
                 akinator->game_mode = quit_without_saving;
                 return SUCCESS;
             case QUIT:
-                akinator->game_mode = quit_without_saving;
+                akinator->game_mode = quit;
                 return SUCCESS;
             default:
                 printf("Не совсем понял тебя, так что делать то будем?\n");
                 PrintOptions();
         }
-    }
-
-    return SUCCESS;
-}
-
-TYPE_OF_ERROR StartGame(Akinator* akinator) {
-    check_expression(akinator, POINTER_IS_NULL);
-
-    switch(akinator->game_mode) {
-        case guess_mode:
-            PlayAkinator(akinator, akinator->tree->root);
-            return SUCCESS;
-        case quit_without_saving:
-            return SUCCESS;
-        case quit:
-            return SUCCESS;
-        default:
-            warning(false, PROGRAM_ERROR);
     }
 
     return SUCCESS;
