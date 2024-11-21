@@ -4,17 +4,17 @@ rankdir=HR;
 nodesep=0.4;
 node [shape=record, fontname="Arial"];
 edge [style=bold, color="black", weight=10, penwidth=4, arrowsize=0.2];
-P0x154f04100 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x154f04100 ] | Parent = [ 0x0 ] | Error = 0 | Number of kids = 2 | HASH = 12049380807330591050 | VALUE = 50 | { <l> LEFT = [ 0x154f04be0 ] | <r> RIGHT = [ 0x154f04c10 ]}}" ];
-P0x154f04be0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x154f04be0 ] | Parent = [ 0x154f04100 ] | Error = 0 | Number of kids = 0 | HASH = 10113536655003054311 | VALUE = 20 | { <l> LEFT = [ 0x0 ] | <r> RIGHT = [ 0x0 ]}}" ];
-P0x154f04c10 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x154f04c10 ] | Parent = [ 0x154f04100 ] | Error = 0 | Number of kids = 2 | HASH = 10113536655003054476 | VALUE = 70 | { <l> LEFT = [ 0x154e05f00 ] | <r> RIGHT = [ 0x154f04c40 ]}}" ];
-P0x154e05f00 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x154e05f00 ] | Parent = [ 0x154f04c10 ] | Error = 0 | Number of kids = 1 | HASH = 594897367578800491 | VALUE = 60 | { <l> LEFT = [ 0x154e05c10 ] | <r> RIGHT = [ 0x0 ]}}" ];
-P0x154e05c10 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x154e05c10 ] | Parent = [ 0x154e05f00 ] | Error = 0 | Number of kids = 0 | HASH = 7206322358047043916 | VALUE = 52 | { <l> LEFT = [ 0x0 ] | <r> RIGHT = [ 0x0 ]}}" ];
-P0x154e05f00:<l> -> P0x154e05c10
-P0x154f04c40 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x154f04c40 ] | Parent = [ 0x154f04c10 ] | Error = 0 | Number of kids = 1 | HASH = 4300829101 | VALUE = 80 | { <l> LEFT = [ 0x154f04c70 ] | <r> RIGHT = [ 0x0 ]}}" ];
-P0x154f04c70 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x154f04c70 ] | Parent = [ 0x154f04c40 ] | Error = 0 | Number of kids = 0 | HASH = 7206322358047043985 | VALUE = 75 | { <l> LEFT = [ 0x0 ] | <r> RIGHT = [ 0x0 ]}}" ];
-P0x154f04c40:<l> -> P0x154f04c70
-P0x154f04c10:<l> -> P0x154e05f00
-P0x154f04c10:<r> -> P0x154f04c40
-P0x154f04100:<l> -> P0x154f04be0
-P0x154f04100:<r> -> P0x154f04c10
+P0x11ff04100 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x11ff04100 ] | Parent = [ 0x0 ] | Error = 0 | Number of kids = 2 | HASH = 17236120203177849162 | VALUE = 50 | { <l> LEFT = [ 0x10ff04080 ] | <r> RIGHT = [ 0x10fe04480 ]}}" ];
+P0x10ff04080 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x10ff04080 ] | Parent = [ 0x11ff04100 ] | Error = 0 | Number of kids = 0 | HASH = 8031606989762687207 | VALUE = 20 | { <l> LEFT = [ 0x0 ] | <r> RIGHT = [ 0x0 ]}}" ];
+P0x10fe04480 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x10fe04480 ] | Parent = [ 0x11ff04100 ] | Error = 0 | Number of kids = 2 | HASH = 8031606989762687372 | VALUE = 70 | { <l> LEFT = [ 0x10fe04400 ] | <r> RIGHT = [ 0x11ff04b30 ]}}" ];
+P0x10fe04400 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x10fe04400 ] | Parent = [ 0x10fe04480 ] | Error = 0 | Number of kids = 1 | HASH = 17946844519372255595 | VALUE = 60 | { <l> LEFT = [ 0x10ff040b0 ] | <r> RIGHT = [ 0x0 ]}}" ];
+P0x10ff040b0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x10ff040b0 ] | Parent = [ 0x10fe04400 ] | Error = 0 | Number of kids = 0 | HASH = 13205820749146321228 | VALUE = 52 | { <l> LEFT = [ 0x0 ] | <r> RIGHT = [ 0x0 ]}}" ];
+P0x10fe04400:<l> -> P0x10ff040b0
+P0x11ff04b30 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x11ff04b30 ] | Parent = [ 0x10fe04480 ] | Error = 0 | Number of kids = 1 | HASH = 4300829101 | VALUE = 80 | { <l> LEFT = [ 0x119104080 ] | <r> RIGHT = [ 0x0 ]}}" ];
+P0x119104080 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x119104080 ] | Parent = [ 0x11ff04b30 ] | Error = 0 | Number of kids = 0 | HASH = 13205820749146321297 | VALUE = 75 | { <l> LEFT = [ 0x0 ] | <r> RIGHT = [ 0x0 ]}}" ];
+P0x11ff04b30:<l> -> P0x119104080
+P0x10fe04480:<l> -> P0x10fe04400
+P0x10fe04480:<r> -> P0x11ff04b30
+P0x11ff04100:<l> -> P0x10ff04080
+P0x11ff04100:<r> -> P0x10fe04480
 }

@@ -143,41 +143,31 @@ TYPE_OF_ERROR ReadDataBase(Akinator* akinator) {
 
 TYPE_OF_ERROR ProcessBuffer(Akinator* akinator, TreeNode<char*>* node, int side, char* begin, char* end) {
     check_expression(akinator, POINTER_IS_NULL);
-    check_expression(node, POINTER_IS_NULL);
+    if(!node) return POINTER_IS_NULL;
     check_expression(begin, POINTER_IS_NULL);
     check_expression(end, POINTER_IS_NULL);
-    printf("%s\n", node->value);
 
     TreeDump(akinator->tree);
     if((end > (strchr(begin, '"') + 1)) && (strchr(begin, '"') != NULL)) {
-        printf("< %s - Value\t%p - Node\t%p - L\t%p - R\t%d - Side\t%p - begin\t%p - end >\n", node->value, node, node->left, node->right, side, begin, end);
         begin = strchr(begin, '"') + 1;
         if(*strchr(begin, '"')) {
             *(strchr(begin, '"')) = '\0';
-            printf("< %s - Value\t%p - Node\t%p - L\t%p - R\t%d - Side\t%p - begin\t%p - end >\n", node->value, node, node->left, node->right, side, begin, end);
         }
         AddNode(node, begin, side);
-        // printf("Added %p node\n", node);
-        printf("< %s - Value\t%p - Node\t%p - L\t%p - R\t%d - Side\t%p - begin\t%p - end >\n", node->value, node, node->left, node->right, side, begin, end);
         begin = strchr(begin, '\0') + 1;
         if(node->right) {
-            printf("RIGHT: %p %p\n", node->left, node->right);
             ProcessBuffer(akinator, node->right, LEFT_SIDE, begin, end);
-            printf("< %s - Value\t%p - Node\t%p - L\t%p - R\t%d - Side\t%p - begin\t%p - end >\n", node->value, node, node->left, node->right, side, begin, end);
+            return SUCCESS;
         }
         else {
-            printf("< %s - Value\t%p - Node\t%p - L\t%p - R\t%d - Side\t%p - begin\t%p - end >\n", node->value, node, node->left, node->right, side, begin, end);
-            printf("LEFT: %p %p\n", node->left, node->right);
             ProcessBuffer(akinator, node->left, LEFT_SIDE, begin, end);
+            return SUCCESS;
         }
     }
-    printf("< %s - Value\t%p - Node\t%p - L\t%p - R\t%d - Side\t%p - begin\t%p - end >\n", node->value, node, node->left, node->right, side, begin, end);
     end = strchr(end + 1, '}');
 
-    printf("PARENT: %p %s\n", node->parent, node->value);
     ProcessBuffer(akinator, node->parent, RIGHT_SIDE, begin, end);
 
-    printf("< %s - Value\t%p - Node\t%p - L\t%p - R\t%d - Side\t%p - begin\t%p - end >\n", node->value, node, node->left, node->right, side, begin, end);
     return SUCCESS;
 }
 
