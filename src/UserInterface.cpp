@@ -33,31 +33,21 @@ void Loading() {
 }
 
 void PrintOptions() {
-    color_printf(GREEN_TEXT, BOLD, "Играть в акинатора               [а]\n");
-    color_printf(YELLOW_TEXT,BOLD, "Выйти без сохранения базы данных [в]\n");
-    color_printf(RED_TEXT,   BOLD, "Выйти и сохранить                [с]\n");
+    color_printf(GREEN_TEXT,  BOLD, "Играть в акинатора               [1]\n");
+    color_printf(GREEN_TEXT,  BOLD, "Описание персонажа               [2]\n");
+    color_printf(GREEN_TEXT,  BOLD, "Сравнить персонажей              [3]\n");
+    color_printf(GREEN_TEXT,  BOLD, "Сохранить базу данных            [4]\n");
+    color_printf(GREEN_TEXT,  BOLD, "Загрузить базу данных            [5]\n");
+    color_printf(GREEN_TEXT,  BOLD, "Посмотреть дерево акинатора      [6]\n");
+    color_printf(YELLOW_TEXT, BOLD, "Выйти и сохранить                [7]\n");
+    color_printf(RED_TEXT,    BOLD, "Выйти без сохранения             [8]\n");
 }
 
 TYPE_OF_ERROR ChooseGameMode(Akinator* akinator) {
-    char answer[MAX_VALUE_SIZE] = "";
-
+    int answer = 0;
     while(1) {
-        scanf("%s", answer); //TODO Костыль с локализацией
-        switch(answer[1]) {
-            case PLAY:
-                akinator->game_mode = guess_mode;
-                return SUCCESS;
-            case QUIT_WITHOUT_SAVE:
-                akinator->game_mode = quit_without_saving;
-                return SUCCESS;
-            case QUIT:
-                akinator->game_mode = quit;
-                return SUCCESS;
-            default:
-                printf("Не совсем понял тебя, так что делать то будем?\n");
-                PrintOptions();
+        _ModeSelection();
         }
-    }
 
     return SUCCESS;
 }

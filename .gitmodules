@@ -10,3 +10,6 @@
 [submodule "Binary-tree"]
 	path = Binary-tree
 	url = git@github.com:livlavr/Binary-tree.git
+[submodule "Stack"]
+	path = Stack
+	url = git@github.com:livlavr/Stack.git

@@ -134,20 +134,17 @@ TYPE_OF_ERROR ReadDataBase(Akinator* akinator) {
 
     ProcessBuffer(akinator, akinator->tree->root, LEFT_SIDE, begin, end);
 
-    printf("HUIHUIIIII\n");
-
-    // TreeDump(akinator->tree);
+    TreeDump(akinator->tree);
 
     return SUCCESS;
 }
 
 TYPE_OF_ERROR ProcessBuffer(Akinator* akinator, TreeNode<char*>* node, int side, char* begin, char* end) {
+    if(!node)           return POINTER_IS_NULL;
     check_expression(akinator, POINTER_IS_NULL);
-    if(!node) return POINTER_IS_NULL;
-    check_expression(begin, POINTER_IS_NULL);
-    check_expression(end, POINTER_IS_NULL);
+    check_expression(begin,    POINTER_IS_NULL);
+    check_expression(end,      POINTER_IS_NULL);
 
-    TreeDump(akinator->tree);
     if((end > (strchr(begin, '"') + 1)) && (strchr(begin, '"') != NULL)) {
         begin = strchr(begin, '"') + 1;
         if(*strchr(begin, '"')) {

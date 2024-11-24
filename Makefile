@@ -1,11 +1,12 @@
 CXX           = gcc-14
 
 SRC           = main.cpp Akinator.cpp UserInterface.cpp DataBase.cpp
-SUBMODULE_SRC = Color-printf/color_printf.cpp
+SUBMODULE_SRC = Color-printf/color_printf.cpp Stack/src/recalloc.cpp Stack/src/stack_public.cpp \
+				Stack/src/stack_security.cpp Stack/src/stack.cpp Stack/src/stack_dump.cpp
 
 BUILD_DIR     = ./build/
 SRC_DIR       = ./src/
-CFLAGS        = -I inc -I Custom-asserts -I Color-printf -I Binary-tree/inc -I Debug-macros
+CFLAGS        = -I inc -I Custom-asserts -I Color-printf -I Binary-tree/inc -I Debug-macros -I Stack/inc
 
 TARGET        = Akinator
 OBJECT        = $(patsubst %.cpp, %.o, $(SRC))

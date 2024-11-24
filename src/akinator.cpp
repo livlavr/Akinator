@@ -21,22 +21,20 @@ TYPE_OF_ERROR StartGame(Akinator* akinator) {
     check_expression(akinator, POINTER_IS_NULL);
 
     switch(akinator->game_mode) {
-        case guess_mode:
+        case play_akinator:
             PlayAkinator(akinator, akinator->tree->root);
             return SUCCESS;
-        case quit_without_saving:
+        case description:
+            GetDescription(akinator);
             return SUCCESS;
+        case quit_and_save:
+            UpdateDataBase(akinator);
         case quit:
+            QuitWithoutSaving(akinator);
             return SUCCESS;
         default:
             warning(false, PROGRAM_ERROR);
     }
-
-    return SUCCESS;
-}
-
-TYPE_OF_ERROR GuessMode(Akinator* akinator) {
-    PlayAkinator(akinator, akinator->tree->root);
 
     return SUCCESS;
 }
@@ -161,7 +159,7 @@ TYPE_OF_ERROR ConnectCharacterToTree(Akinator* akinator, TreeNode<char*>* node,
         LinkRootCharacter(akinator, node, attribute, character);
     }
     else {
-        LinkCharacter(akinator, node, attribute, character);
+        LinkCharacter    (akinator, node, attribute, character);
     }
 
     return SUCCESS;
@@ -195,7 +193,7 @@ TYPE_OF_ERROR LinkRootCharacter(Akinator* akinator, TreeNode<char*>* node,
 TYPE_OF_ERROR LinkCharacter(Akinator* akinator, TreeNode<char*>* node,
                                 char* attribute, char* character) {
     check_expression(akinator,  POINTER_IS_NULL);
-    check_expression(node,     POINTER_IS_NULL);
+    check_expression(node,      POINTER_IS_NULL);
     check_expression(attribute, POINTER_IS_NULL);
 
     int side = 0;
@@ -231,25 +229,70 @@ TYPE_OF_ERROR LinkCharacter(Akinator* akinator, TreeNode<char*>* node,
 TYPE_OF_ERROR QuitWithoutSaving(Akinator* akinator) {
     check_expression(akinator, POINTER_IS_NULL);
 
-    TreeDtor    (akinator->tree);
-    AkinatorDtor(akinator);
+    // TreeDtor    (akinator->tree);
+    // AkinatorDtor(akinator);//TODO
+
+    return SUCCESS;
+}
+
+TYPE_OF_ERROR GetDescription(Akinator* akinator) {
+    char character[MAX_VALUE_SIZE]  = "";
+    TreeNode<char*>* character_node = NULL;
+    TreeNode<char*>* original_node  = NULL;
+    _ScanAnswer(character);
+    CreateNode<char*>(&character_node, character);
+
+    while(!original_node) {
+        printf("Ой, я таких не знаю, спроси про кого-нибудь другого\n");
+        _ScanAnswer(character);
+        character_node->value = character;
+        character_node->hash  = Hash(character);
+        FindCharacter(akinator->tree->root, character_node, &original_node);
+    }
+
+    stack* way_to_node = NULL;
+    stack_init(way_to_node, 10);
+
+    GetWayToNode(way_to_node, character_node);
+
+    stack_destroy(way_to_node);
+
+    return SUCCESS;
+}
+
+TYPE_OF_ERROR FindCharacter(TreeNode<char*>* node, TreeNode<char*>* character_node, TreeNode<char*>** original_node) {
+    if(!node) return SUCCESS;
+
+    if(node->hash == character_node->hash) {
+        if(strcmp(node->value, character_node->value) == 0) {
+            *original_node = node;
+        }
+    }
+    FindCharacter(node->left, character_node, original_node);
+    if(!original_node) {
+        FindCharacter(node->right, character_node, original_node);
+    }
+
+    return SUCCESS;
+}
+
+
+
+TYPE_OF_ERROR GetWayToNode(stack* way_to_node, TreeNode<char*>* node) {
+
+    if(node->parent) {
+        if(node->parent->left == node) {
+//TODO
+        }
+    }
 
     return SUCCESS;
 }
 
 TYPE_OF_ERROR AkinatorDtor(Akinator* akinator) {
-    switch(akinator->game_mode) {
-        case quit:
-            UpdateDataBase(akinator);
-        case quit_without_saving:
-            TreeDtor(akinator->tree);
-            free(akinator->input_data_base);
-            free(akinator->output_data_base);
-
-            return SUCCESS;
-        default:
-            warning(false, PROGRAM_ERROR);
-    }
+    // TreeDtor(akinator->tree);//TODO flags in node structure
+    free(akinator->input_data_base );
+    free(akinator->output_data_base);
 
     return SUCCESS;
 }
