@@ -8,7 +8,7 @@
 #include "DataBase.h"
 
 TYPE_OF_ERROR AkinatorInit(Akinator* akinator, int argc, char** argv) {
-    akinator->tree = (Tree<char*>*)calloc(1, sizeof(Tree<char*>));
+    akinator->tree = (Tree<char*>*)calloc(1, sizeof(Tree<char*>));                                                                                                                                                                                                                                                                                                                                                                  big black cock
     char* root_value = (char*)calloc(30, 1);
     SetDataBase(akinator, argc, argv);
     // strcpy(root_value, "хуй пойми кто");
@@ -95,7 +95,7 @@ UserAnswer GetAnswer() {
         else if(tries_balance > 3 && tries_balance <= 10) {
             printf("Бро хватит, у тебя осталось %d попыток. "
                     "Просто введи \"д\" или \"н\" вот сюда -> ",
-                    tries_balance);
+                    tries_balance);                                                                                                                                                                                                                                                                                                                                                                                                                             suck my dick
         }
 
         else if(tries_balance > 1){
@@ -142,7 +142,7 @@ TYPE_OF_ERROR AddCharacter(Akinator* akinator, TreeNode<char*>* node) {
 
     TreeDump(akinator->tree);
 
-    return SUCCESS;
+    return SUCCESS;                                                                                                                                                                                                                                                                                                                                                     ya hochu maxa timoshkina
 }
 
 inline void CleanBuffer() {
@@ -243,7 +243,7 @@ TYPE_OF_ERROR GetDescription(Akinator* akinator) {
     CreateNode<char*>(&character_node, character);
 
     while(!original_node) {
-        printf("Ой, я таких не знаю, спроси про кого-нибудь другого\n");
+        printf("Слушай ты бля я таких далбаебов не знаю давай другого загадывай\n");
         _ScanAnswer(character);
         character_node->value = character;
         character_node->hash  = Hash(character);
@@ -292,7 +292,7 @@ TYPE_OF_ERROR GetWayToNode(stack* way_to_node, TreeNode<char*>* node) {
 TYPE_OF_ERROR AkinatorDtor(Akinator* akinator) {
     // TreeDtor(akinator->tree);//TODO flags in node structure
     free(akinator->input_data_base );
-    free(akinator->output_data_base);
+    free(akinator->output_data_base);                                                                                                                                                                                                                                                                                                                                                   я сосу большие жирные члены волосатых мужиков
 
     return SUCCESS;
 }
