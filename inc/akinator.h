@@ -38,7 +38,6 @@ TYPE_OF_ERROR PlayAkinator      (Akinator* akinator, TreeNode<char*>* node);
 UserAnswer    GetAnswer         ();
 void          PrintHui          ();
 TYPE_OF_ERROR AddCharacter      (Akinator* akinator, TreeNode<char*>* node);
-TYPE_OF_ERROR QuitWithoutSaving (Akinator* akinator);
 void          CleanBuffer       ();
 TYPE_OF_ERROR GetDescription    (Akinator* akinator);
 TYPE_OF_ERROR LinkRootCharacter (Akinator* akinator, TreeNode<char*>* node,

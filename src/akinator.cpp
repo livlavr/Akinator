@@ -52,7 +52,7 @@ TYPE_OF_ERROR StartGame(Akinator* akinator) {
         case quit_and_save:
             UpdateDataBase(akinator);
         case quit:
-            QuitWithoutSaving(akinator);
+            AkinatorDtor(akinator);
             return SUCCESS;
         default:
             warning(false, PROGRAM_ERROR);
@@ -290,15 +290,6 @@ TYPE_OF_ERROR LinkCharacter(Akinator* akinator, TreeNode<char*>* node,
     return SUCCESS;
 }
 
-TYPE_OF_ERROR QuitWithoutSaving(Akinator* akinator) {
-    check_expression(akinator, POINTER_IS_NULL);
-
-    // TreeDtor    (akinator->tree);
-    // AkinatorDtor(akinator);//TODO
-
-    return SUCCESS;
-}
-
 TYPE_OF_ERROR GetDescription(Akinator* akinator) {
     check_expression(akinator, POINTER_IS_NULL);
 
@@ -473,7 +464,7 @@ TYPE_OF_ERROR PrintComparing(TreeNode<char*>* node, stack* way1, stack* way2, ch
 
 TYPE_OF_ERROR AkinatorDtor(Akinator* akinator) {
     check_expression(akinator, POINTER_IS_NULL);
-    // TreeDtor(akinator->tree);//TODO flags in node structure
+    TreeDtor(akinator->tree);//TODO flags in node structure
     free(akinator->input_data_base );
     free(akinator->output_data_base);
 

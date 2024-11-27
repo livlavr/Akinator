@@ -11,6 +11,7 @@ TYPE_OF_ERROR PrintDataBase     (FILE* data_base, TreeNode<char*>* node);
 TYPE_OF_ERROR SetDefaultFilename(char** filename, const char* defult_filename);
 TYPE_OF_ERROR ReadDataBase      (Akinator* akinator);
 TYPE_OF_ERROR InstallDataBase   (Akinator* akinator);
-TYPE_OF_ERROR ProcessBuffer     (Akinator* akinator, TreeNode<char*>* node, int side, char* begin, char* end);
+TYPE_OF_ERROR ProcessBuffer     (Akinator* akinator, TreeNode<char*>* node,
+                                 int side, char* begin, char* end, char** begin_copy);
 
 #endif

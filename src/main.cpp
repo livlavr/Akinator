@@ -13,5 +13,4 @@ int main(int argc, char** argv) {
         MainMenu (&akinator);
         StartGame(&akinator);
     } while(akinator.game_mode != quit && akinator.game_mode != quit_and_save);
-    AkinatorDtor(&akinator); //TODO
 }

@@ -159,18 +159,21 @@ TYPE_OF_ERROR ReadDataBase(Akinator* akinator) {
     begin = strchr(begin, '"') + 1;
     end   = strchr(begin, '}');
     *(strchr(begin, '"')) = '\0';
-    TreeInit(akinator->tree, begin);
+    char* begin_copy = (char*)calloc(strlen(begin), sizeof(char));
+    memcpy(begin_copy, begin, strlen(begin));
+    TreeInit(akinator->tree, begin_copy);
 
     begin = strchr(strchr(begin, '\0') + 1, '{');
 
-    ProcessBuffer(akinator, akinator->tree->root, LEFT_SIDE, begin, end);
+    ProcessBuffer(akinator, akinator->tree->root, LEFT_SIDE, begin, end, &begin_copy);
 
     TreeDump(akinator->tree);
 
     return SUCCESS;
 }
 
-TYPE_OF_ERROR ProcessBuffer(Akinator* akinator, TreeNode<char*>* node, int side, char* begin, char* end) {
+TYPE_OF_ERROR ProcessBuffer(Akinator* akinator, TreeNode<char*>* node,
+                            int side, char* begin, char* end, char** begin_copy) {
     check_expression(akinator, POINTER_IS_NULL);
     if(!node ) return          POINTER_IS_NULL;
     if(!begin) return          POINTER_IS_NULL;
@@ -181,20 +184,22 @@ TYPE_OF_ERROR ProcessBuffer(Akinator* akinator, TreeNode<char*>* node, int side,
         if(*strchr(begin, '"')) {
             *(strchr(begin, '"')) = '\0';
         }
-        AddNode(node, begin, side);
+        *begin_copy = (char*)calloc(strlen(begin), sizeof(char));
+        memcpy(*begin_copy, begin, strlen(begin));
+        AddNode(node, *begin_copy, side);
         begin = strchr(begin, '\0') + 1;
         if(node->right) {
-            ProcessBuffer(akinator, node->right, LEFT_SIDE, begin, end);
+            ProcessBuffer(akinator, node->right, LEFT_SIDE, begin, end, begin_copy);
             return SUCCESS;
         }
         else {
-            ProcessBuffer(akinator, node->left, LEFT_SIDE, begin, end);
+            ProcessBuffer(akinator, node->left, LEFT_SIDE, begin, end, begin_copy);
             return SUCCESS;
         }
     }
     end = strchr(end + 1, '}');
 
-    ProcessBuffer(akinator, node->parent, RIGHT_SIDE, begin, end);
+    ProcessBuffer(akinator, node->parent, RIGHT_SIDE, begin, end, begin_copy);
 
     return SUCCESS;
 }
