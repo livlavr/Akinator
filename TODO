@@ -1,11 +1,13 @@
 [] console parser submodule
-[] add Akinator struct to call functions from root node
+[x] add Akinator struct to call functions from root node
 [] Генерация рандомных фраз - массивы фраз + рандомный индекс
 [] Рандомный логотип
-[] Get DataBase as flag
+[x] Get DataBase as flag
 [] Big array
-[] Обновляющийся логотип
-[] Больше цветов
-[] Show DataBase option in menu
-[] Default make should just compile all files
+[x] Больше цветов
+[x] Show DataBase option in menu
+[x] Default make should just compile all files
 [] Check number of kids in tree maybe doesnt work
+[] Catch empty database error
+[] Fix Dtor
+[] Comparing

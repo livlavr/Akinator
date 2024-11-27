@@ -13,7 +13,5 @@ int main(int argc, char** argv) {
         MainMenu (&akinator);
         StartGame(&akinator);
     } while(akinator.game_mode != quit && akinator.game_mode != quit_and_save);
-    // ReadDataBase(&akinator);
-    OpenDump(akinator.tree);
-    // AkinatorDtor(&akinator); //TODO we have to calloc in readbase
+    AkinatorDtor(&akinator); //TODO
 }

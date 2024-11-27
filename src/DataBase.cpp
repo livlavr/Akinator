@@ -84,15 +84,44 @@ TYPE_OF_ERROR SetDefaultFilename(char** filename, const char* defult_filename) {
     return SUCCESS;
 }
 
+TYPE_OF_ERROR InstallDataBase(Akinator* akinator) {
+    check_expression(akinator, POINTER_IS_NULL);
+
+    FILE* input_file              = NULL;
+    char filename[MAX_VALUE_SIZE] = "";
+
+    printf("Из какого файла считать базу?\n");
+    scanf("%s", filename);
+    input_file = fopen(filename, "r");
+    while(!input_file) {
+        printf("Такого файла нет, попробуй ещё раз:\n");
+        scanf("%s", filename);
+        input_file = fopen(filename, "r");
+    };
+    fclose(input_file);
+
+    size_t size_of_filename   = strlen(filename);
+    memset(akinator->input_data_base, 0, strlen(akinator->input_data_base));
+    akinator->input_data_base = (char*)realloc(akinator->input_data_base, size_of_filename * sizeof(char));
+
+    warning(akinator->input_data_base, CALLOC_ERROR);
+
+    strcpy(akinator->input_data_base, filename);
+
+    ReadDataBase(akinator);
+
+    return SUCCESS;
+}
+
 TYPE_OF_ERROR UpdateDataBase(Akinator* akinator) {
     check_expression(akinator, POINTER_IS_NULL);
 
-    printf("%s\n", akinator->input_data_base);
-    printf("%s\n", akinator->output_data_base);
     FILE* data_base = fopen(akinator->output_data_base, "w");
     warning(data_base, FILE_OPEN_ERROR);
 
     PrintDataBase(data_base, akinator->tree->root);
+
+    fclose(data_base);
 
     return SUCCESS;
 }
@@ -123,6 +152,8 @@ TYPE_OF_ERROR ReadDataBase(Akinator* akinator) {
 
     fread(buffer, sizeof(char), size_of_buffer, input_file);
 
+    fclose(input_file);
+
     char* begin = buffer;
     char* end = NULL;
     begin = strchr(begin, '"') + 1;
@@ -140,10 +171,10 @@ TYPE_OF_ERROR ReadDataBase(Akinator* akinator) {
 }
 
 TYPE_OF_ERROR ProcessBuffer(Akinator* akinator, TreeNode<char*>* node, int side, char* begin, char* end) {
-    if(!node)           return POINTER_IS_NULL;
     check_expression(akinator, POINTER_IS_NULL);
-    check_expression(begin,    POINTER_IS_NULL);
-    check_expression(end,      POINTER_IS_NULL);
+    if(!node ) return          POINTER_IS_NULL;
+    if(!begin) return          POINTER_IS_NULL;
+    if(!end  ) return          POINTER_IS_NULL;
 
     if((end > (strchr(begin, '"') + 1)) && (strchr(begin, '"') != NULL)) {
         begin = strchr(begin, '"') + 1;
@@ -167,82 +198,3 @@ TYPE_OF_ERROR ProcessBuffer(Akinator* akinator, TreeNode<char*>* node, int side,
 
     return SUCCESS;
 }
-
-// TYPE_OF_ERROR size_of_text(const char* filename, size_t* size_of_buffer)
-// {
-//     check_expression(filename      , POINTER_IS_NULL);
-//     check_expression(size_of_buffer, POINTER_IS_NULL);
-//
-//     struct stat buf = {};
-//
-//     int stat_value_check = stat(filename, &buf);
-//
-//     warning(stat_value_check != -1, STAT_ERROR);
-//
-//     *size_of_buffer = (size_t)buf.st_size;
-//
-//     return SUCCESS;
-// }
-
-
-// template<typename T>
-// TYPE_OF_ERROR SetDumpFile(Tree<T>* tree) {
-//     check_expression(tree, POINTER_IS_NULL);
-//
-//     char *buffer_svg  = (char*)calloc(SIZE_OF_BUFFER, sizeof(char));
-//     char *buffer_html = (char*)calloc(SIZE_OF_BUFFER, sizeof(char));
-//
-//     warning(buffer_svg,  CALLOC_ERROR);
-//     warning(buffer_html, CALLOC_ERROR);
-//
-//     time_t my_time          = time(NULL);
-//     char*  time             = ctime(&my_time);
-//     time[strlen(time) - 1]  = '\0';
-//     size_t time_char_length = strlen(time) - 1;
-//     const char *folder_name = "./Tree-dumps/";
-//
-//     system("mkdir -p Tree-dumps");
-//
-//     strcpy (buffer_svg,  folder_name);
-//     strcpy (buffer_html, folder_name);
-//     strncpy(buffer_svg  + strlen(folder_name), time, time_char_length);
-//     strncpy(buffer_html + strlen(folder_name), time, time_char_length);
-//     strcat (buffer_svg,  ".svg" );
-//     strcat (buffer_html, ".html");
-//
-//     ProcessFilename(buffer_svg );
-//     ProcessFilename(buffer_html);
-//
-//     tree->dump_svg_file  = buffer_svg;
-//     tree->dump_html_file = buffer_html;
-//
-//     return SUCCESS;
-// }
-
-// template<typename T>
-// TYPE_OF_ERROR TreeDump(Tree<T>* tree) {
-//     check_expression(tree,       POINTER_IS_NULL);
-//     check_expression(tree->root, POINTER_IS_NULL);
-//
-//     system("mkdir -p Dump-source");
-//
-//     FILE* dot_file = fopen("Dump-source/dump.dot", "w");
-//
-//     warning(dot_file, FILE_OPEN_ERROR);
-//
-//     //Header of graphviz file
-//     fprintf(dot_file, "digraph tree{\nsplines=ortho;\nrankdir=HR;\nnodesep=0.4;"
-//                        "\nnode [shape=record, fontname=\"Arial\"];\n"
-//                        "edge [style=bold, color=\"black\", weight=10, penwidth=4, "
-//                        "arrowsize=0.2];\n");
-//
-//     ProcessTree<T>(tree->root, dot_file);
-//
-//     fprintf(dot_file, "}\n");
-//
-//     fclose(dot_file);
-//
-//     OutputToHtml<T>(*tree);
-//
-//     return SUCCESS;
-// }

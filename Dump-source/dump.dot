@@ -4,17 +4,125 @@ rankdir=HR;
 nodesep=0.4;
 node [shape=record, fontname="Arial"];
 edge [style=bold, color="black", weight=10, penwidth=4, arrowsize=0.2];
-P0x156f04100 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x156f04100 ] | Parent = [ 0x0 ] | Error = 0 | Number of kids = 2 | HASH = 11121639284092268874 | VALUE = 50 | { <l> LEFT = [ 0x160004480 ] | <r> RIGHT = [ 0x160004400 ]}}" ];
-P0x160004480 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x160004480 ] | Parent = [ 0x156f04100 ] | Error = 0 | Number of kids = 0 | HASH = 18325146888071377127 | VALUE = 20 | { <l> LEFT = [ 0x0 ] | <r> RIGHT = [ 0x0 ]}}" ];
-P0x160004400 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x160004400 ] | Parent = [ 0x156f04100 ] | Error = 0 | Number of kids = 2 | HASH = 18325146888071377292 | VALUE = 70 | { <l> LEFT = [ 0x1600045a0 ] | <r> RIGHT = [ 0x160004600 ]}}" ];
-P0x1600045a0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x1600045a0 ] | Parent = [ 0x160004400 ] | Error = 0 | Number of kids = 1 | HASH = 14561826449449906539 | VALUE = 60 | { <l> LEFT = [ 0x1600045d0 ] | <r> RIGHT = [ 0x0 ]}}" ];
-P0x1600045d0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x1600045d0 ] | Parent = [ 0x1600045a0 ] | Error = 0 | Number of kids = 0 | HASH = 8879128144638472524 | VALUE = 52 | { <l> LEFT = [ 0x0 ] | <r> RIGHT = [ 0x0 ]}}" ];
-P0x1600045a0:<l> -> P0x1600045d0
-P0x160004600 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x160004600 ] | Parent = [ 0x160004400 ] | Error = 0 | Number of kids = 1 | HASH = 4300829101 | VALUE = 80 | { <l> LEFT = [ 0x160004630 ] | <r> RIGHT = [ 0x0 ]}}" ];
-P0x160004630 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" {Node = [ 0x160004630 ] | Parent = [ 0x160004600 ] | Error = 0 | Number of kids = 0 | HASH = 8879128144638472593 | VALUE = 75 | { <l> LEFT = [ 0x0 ] | <r> RIGHT = [ 0x0 ]}}" ];
-P0x160004600:<l> -> P0x160004630
-P0x160004400:<l> -> P0x1600045a0
-P0x160004400:<r> -> P0x160004600
-P0x156f04100:<l> -> P0x160004480
-P0x156f04100:<r> -> P0x160004400
+P0x600000bb0000 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { квадробер? | { <l> NO | <r> YES}}" ];
+P0x600000bb0090 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { шарит за матан? | { <l> NO | <r> YES}}" ];
+P0x600000bb0150 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { всегда спит? | { <l> NO | <r> YES}}" ];
+P0x600000bb0120 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { нихуя не просыпается? | { <l> NO | <r> YES}}" ];
+P0x600000bb00f0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { любит трахать пацанов? | { <l> NO | <r> YES}}" ];
+P0x600000bb01b0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { постоянно стонет как сучка? | { <l> NO | <r> YES}}" ];
+P0x600000bb0180 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { богатый? | { <l> NO | <r> YES}}" ];
+P0x600000bb00c0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { чумазый? | { <l> NO | <r> YES}}" ];
+P0x600000bb01e0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { бебра 228? | { <l> NO | <r> YES}}" ];
+P0x600000bb0210 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { чурка? | { <l> NO | <r> YES}}" ];
+P0x600000bb00c0:<l> -> P0x600000bb01e0
+P0x600000bb00c0:<r> -> P0x600000bb0210
+P0x600000bb0240 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { седой? | { <l> NO | <r> YES}}" ];
+P0x600000bb0270 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { пиздюк? | { <l> NO | <r> YES}}" ];
+P0x600000bb02a0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { владелец столовки кпм? | { <l> NO | <r> YES}}" ];
+P0x600000bb02d0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { гном гномыч? | { <l> NO | <r> YES}}" ];
+P0x600000bb0270:<l> -> P0x600000bb02a0
+P0x600000bb0270:<r> -> P0x600000bb02d0
+P0x600000bb0300 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { дед мороз? | { <l> NO | <r> YES}}" ];
+P0x600000bb0240:<l> -> P0x600000bb0270
+P0x600000bb0240:<r> -> P0x600000bb0300
+P0x600000bb0180:<l> -> P0x600000bb00c0
+P0x600000bb0180:<r> -> P0x600000bb0240
+P0x600000bb0330 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { макс зубаха? | { <l> NO | <r> YES}}" ];
+P0x600000bb01b0:<l> -> P0x600000bb0180
+P0x600000bb01b0:<r> -> P0x600000bb0330
+P0x600000bb0360 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { любит трахать маленьких детей? | { <l> NO | <r> YES}}" ];
+P0x600000bb0390 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { находится в химках? | { <l> NO | <r> YES}}" ];
+P0x600000bb03c0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { качок? | { <l> NO | <r> YES}}" ];
+P0x600000bb03f0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { макс тимошкин? | { <l> NO | <r> YES}}" ];
+P0x600000bb0420 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { богдан с гаечным ключом? | { <l> NO | <r> YES}}" ];
+P0x600000bb03c0:<l> -> P0x600000bb03f0
+P0x600000bb03c0:<r> -> P0x600000bb0420
+P0x600000bb0450 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { военкомат? | { <l> NO | <r> YES}}" ];
+P0x600000bb0390:<l> -> P0x600000bb03c0
+P0x600000bb0390:<r> -> P0x600000bb0450
+P0x600000bb0480 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { русский? | { <l> NO | <r> YES}}" ];
+P0x600000bb04b0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { пи дидди? | { <l> NO | <r> YES}}" ];
+P0x600000bb04e0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { шаман? | { <l> NO | <r> YES}}" ];
+P0x600000bb0480:<l> -> P0x600000bb04b0
+P0x600000bb0480:<r> -> P0x600000bb04e0
+P0x600000bb0360:<l> -> P0x600000bb0390
+P0x600000bb0360:<r> -> P0x600000bb0480
+P0x600000bb00f0:<l> -> P0x600000bb01b0
+P0x600000bb00f0:<r> -> P0x600000bb0360
+P0x600000bb0510 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { ваня лаврущев? | { <l> NO | <r> YES}}" ];
+P0x600000bb0120:<l> -> P0x600000bb00f0
+P0x600000bb0120:<r> -> P0x600000bb0510
+P0x600000bb0540 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { шарит за питон? | { <l> NO | <r> YES}}" ];
+P0x600000bb0570 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { полторашка? | { <l> NO | <r> YES}}" ];
+P0x600000bb05a0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { кулиев? | { <l> NO | <r> YES}}" ];
+P0x600000bb0540:<l> -> P0x600000bb0570
+P0x600000bb0540:<r> -> P0x600000bb05a0
+P0x600000bb0150:<l> -> P0x600000bb0120
+P0x600000bb0150:<r> -> P0x600000bb0540
+P0x600000bb05d0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { молодой и хуй большой? | { <l> NO | <r> YES}}" ];
+P0x600000bb0600 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { здравый мужик? | { <l> NO | <r> YES}}" ];
+P0x600000bb0630 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { сосал? | { <l> NO | <r> YES}}" ];
+P0x600000bb0660 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { калиныч? | { <l> NO | <r> YES}}" ];
+P0x600000bb0690 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { жмет 80кг? | { <l> NO | <r> YES}}" ];
+P0x600000bb06c0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { жена калиныча? | { <l> NO | <r> YES}}" ];
+P0x600000bb06f0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { тимоха крючков? | { <l> NO | <r> YES}}" ];
+P0x600000bb0690:<l> -> P0x600000bb06c0
+P0x600000bb0690:<r> -> P0x600000bb06f0
+P0x600000bb0630:<l> -> P0x600000bb0660
+P0x600000bb0630:<r> -> P0x600000bb0690
+P0x600000bb0720 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { подлесыч? | { <l> NO | <r> YES}}" ];
+P0x600000bb0600:<l> -> P0x600000bb0630
+P0x600000bb0600:<r> -> P0x600000bb0720
+P0x600000bb0750 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { получал пизды от димашины? | { <l> NO | <r> YES}}" ];
+P0x600000bb0780 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { фанат макса зубахи? | { <l> NO | <r> YES}}" ];
+P0x600000bb07b0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { дружит с дедом? | { <l> NO | <r> YES}}" ];
+P0x600000bb07e0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { никита вейда? | { <l> NO | <r> YES}}" ];
+P0x600000bb0810 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { тоха головинский? | { <l> NO | <r> YES}}" ];
+P0x600000bb07b0:<l> -> P0x600000bb07e0
+P0x600000bb07b0:<r> -> P0x600000bb0810
+P0x600000bb0840 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { ника котик? | { <l> NO | <r> YES}}" ];
+P0x600000bb0780:<l> -> P0x600000bb07b0
+P0x600000bb0780:<r> -> P0x600000bb0840
+P0x600000bb0870 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { матвей зенков? | { <l> NO | <r> YES}}" ];
+P0x600000bb0750:<l> -> P0x600000bb0780
+P0x600000bb0750:<r> -> P0x600000bb0870
+P0x600000bb05d0:<l> -> P0x600000bb0600
+P0x600000bb05d0:<r> -> P0x600000bb0750
+P0x600000bb0090:<l> -> P0x600000bb0150
+P0x600000bb0090:<r> -> P0x600000bb05d0
+P0x600000bb08a0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { хвост в жопе? | { <l> NO | <r> YES}}" ];
+P0x600000bb08d0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { танцует? | { <l> NO | <r> YES}}" ];
+P0x600000bb0900 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { маленький пенис? | { <l> NO | <r> YES}}" ];
+P0x600000bb0930 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { дед32? | { <l> NO | <r> YES}}" ];
+P0x600000bb0960 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { мягкая попка? | { <l> NO | <r> YES}}" ];
+P0x600000bb0990 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { РТРТРТРРТРТРТРТРТРТРТ? | { <l> NO | <r> YES}}" ];
+P0x600000bb09c0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { СПСПСПСПСПСПСПСПСПСПС? | { <l> NO | <r> YES}}" ];
+P0x600000bb0960:<l> -> P0x600000bb0990
+P0x600000bb0960:<r> -> P0x600000bb09c0
+P0x600000bb0900:<l> -> P0x600000bb0930
+P0x600000bb0900:<r> -> P0x600000bb0960
+P0x600000bb09f0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { фляга свистит? | { <l> NO | <r> YES}}" ];
+P0x600000bb0a20 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { кактус? | { <l> NO | <r> YES}}" ];
+P0x600000bb0a50 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { лысый? | { <l> NO | <r> YES}}" ];
+P0x600000bb0a80 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { саня романенков? | { <l> NO | <r> YES}}" ];
+P0x600000bb0ab0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { соня бакалец? | { <l> NO | <r> YES}}" ];
+P0x600000bb0a50:<l> -> P0x600000bb0a80
+P0x600000bb0a50:<r> -> P0x600000bb0ab0
+P0x600000bb09f0:<l> -> P0x600000bb0a20
+P0x600000bb09f0:<r> -> P0x600000bb0a50
+P0x600000bb08d0:<l> -> P0x600000bb0900
+P0x600000bb08d0:<r> -> P0x600000bb09f0
+P0x600000bb0ae0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { управлял страной? | { <l> NO | <r> YES}}" ];
+P0x600000bb0b10 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { убийца? | { <l> NO | <r> YES}}" ];
+P0x600000bb0b40 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { кошко-мальчик? | { <l> NO | <r> YES}}" ];
+P0x600000bb0b70 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { мишка фредди? | { <l> NO | <r> YES}}" ];
+P0x600000bb0b10:<l> -> P0x600000bb0b40
+P0x600000bb0b10:<r> -> P0x600000bb0b70
+P0x600000bb0ba0 [style = "filled, rounded", fillcolor="yellow:magenta" gradientangle=270,label=" { байден? | { <l> NO | <r> YES}}" ];
+P0x600000bb0ae0:<l> -> P0x600000bb0b10
+P0x600000bb0ae0:<r> -> P0x600000bb0ba0
+P0x600000bb08a0:<l> -> P0x600000bb08d0
+P0x600000bb08a0:<r> -> P0x600000bb0ae0
+P0x600000bb0000:<l> -> P0x600000bb0090
+P0x600000bb0000:<r> -> P0x600000bb08a0
 }

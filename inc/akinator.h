@@ -32,39 +32,44 @@ struct Akinator {
     GameMode     game_mode;
 };
 
-TYPE_OF_ERROR AkinatorInit          (Akinator* akinator, int argc, char** argv);
-TYPE_OF_ERROR GuessMode             (Akinator* akinator);
-TYPE_OF_ERROR PlayAkinator          (Akinator* akinator, TreeNode<char*>* node);
-UserAnswer    GetAnswer             ();
-TYPE_OF_ERROR AddCharacter          (Akinator* akinator, TreeNode<char*>* node);
-TYPE_OF_ERROR QuitWithoutSaving     (Akinator* akinator);
-TYPE_OF_ERROR ConnectCharacterToTree(Akinator* akinator, TreeNode<char*>* node,
-                                     char* attribute, char* character);
-inline void   CleanBuffer           ();
-TYPE_OF_ERROR GetDescription        (Akinator* akinator);
-TYPE_OF_ERROR LinkRootCharacter     (Akinator* akinator, TreeNode<char*>* node,
-                                     char* attribute, char* character);
-TYPE_OF_ERROR LinkCharacter         (Akinator* akinator, TreeNode<char*>* node,
-                                     char* attribute, char* character);
-TYPE_OF_ERROR FindCharacter         (TreeNode<char*>* node, TreeNode<char*>* character_node,
-                                     TreeNode<char*>** original_node);
-TYPE_OF_ERROR GetWayToNode          (stack* way_to_node, TreeNode<char*>* node);
-TYPE_OF_ERROR StartGame             (Akinator* akinator);
-TYPE_OF_ERROR AkinatorDtor          (Akinator* akinator);
+TYPE_OF_ERROR AkinatorInit      (Akinator* akinator, int argc, char** argv);
+TYPE_OF_ERROR GuessMode         (Akinator* akinator);
+TYPE_OF_ERROR PlayAkinator      (Akinator* akinator, TreeNode<char*>* node);
+UserAnswer    GetAnswer         ();
+void          PrintHui          ();
+TYPE_OF_ERROR AddCharacter      (Akinator* akinator, TreeNode<char*>* node);
+TYPE_OF_ERROR QuitWithoutSaving (Akinator* akinator);
+void          CleanBuffer       ();
+TYPE_OF_ERROR GetDescription    (Akinator* akinator);
+TYPE_OF_ERROR LinkRootCharacter (Akinator* akinator, TreeNode<char*>* node,
+                                 char* attribute, char* character);
+TYPE_OF_ERROR LinkCharacter     (Akinator* akinator, TreeNode<char*>* node,
+                                 char* attribute, char* character);
+TYPE_OF_ERROR FindNode          (TreeNode<char*>* node, TreeNode<char*>* character_node,
+                                 TreeNode<char*>** original_node);
+TYPE_OF_ERROR FindValueInTree   (TreeNode<char*>* node, char* value, uint32_t hash);
+TYPE_OF_ERROR GetWayToNode      (stack* way_to_node, TreeNode<char*>* node);
+TreeNode<char*>* FindCharacter  (Akinator* akinator, stack* way_to_node);
+TYPE_OF_ERROR CompareCharacters (Akinator* akinator);
+TYPE_OF_ERROR PrintComparing    (TreeNode<char*>* node, stack* way1, stack* way2, char* value1, char* value2);
+TYPE_OF_ERROR PrintDescription  (stack* way_to_node, TreeNode<char*>* node);
+TYPE_OF_ERROR StartGame         (Akinator* akinator);
+TYPE_OF_ERROR AkinatorDtor      (Akinator* akinator);
 
 #define _ScanAnswer(value)   \
     CleanBuffer();           \
     scanf("%100[^\n]", value)\
 
-#define _WhaitForValidAnswer(function, node, variable, correct_return, message)\
+#define _WhaitForValidAnswer(function, variable, correct_return, message)\
     while(function != correct_return) {                                        \
-        printf(message, variable);                                             \
+        color_printf(RED_TEXT, BOLD, message, variable);                       \
         _ScanAnswer(variable);                                                 \
-        node->value = variable;                                                \
-        node->hash  = Hash(variable);                                          \
     }                                                                          \
     printf("")
 
-#define FindCharacterNode()\
-    while()
+#define _WaitForAnswer()\
+    printf("Введи что-нибудь, чтобы выйти в меню ");\
+    char shit_word[MAX_VALUE_SIZE] = "";\
+    scanf("%100s", &shit_word)
+
 #endif

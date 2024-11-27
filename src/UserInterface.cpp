@@ -8,8 +8,8 @@
 
 
 TYPE_OF_ERROR MainMenu(Akinator* akinator) {
+    system("clear");
     PrintMenu();
-    Loading();
     ChooseGameMode(akinator);
 
     return SUCCESS;
@@ -22,10 +22,27 @@ void PrintMenu() {
 }
 
 void PrintLogo() {
-    color_printf(RED_TEXT, BOLD, "▗▄▄▄  ▗▄▄▄▖▗▄▄▄▖ ▗▄▖ ▗▖  ▗▖ ▗▄▖▗▄▄▄▖▗▄▖ ▗▄▄▖ \n"
-                                 "▐▌  █ ▐▌     █  ▐▌ ▐▌▐▛▚▖▐▌▐▌ ▐▌ █ ▐▌ ▐▌▐▌ ▐▌\n"
-                                 "▐▌  █ ▐▛▀▀▘  █  ▐▌ ▐▌▐▌ ▝▜▌▐▛▀▜▌ █ ▐▌ ▐▌▐▛▀▚▖\n"
-                                 "▐▙▄▄▀ ▐▙▄▄▖  █  ▝▚▄▞▘▐▌  ▐▌▐▌ ▐▌ █ ▝▚▄▞▘▐▌ ▐▌\n\n");
+    // color_printf(RED_TEXT, BOLD, "▗▄▄▄  ▗▄▄▄▖▗▄▄▄▖ ▗▄▖ ▗▖  ▗▖ ▗▄▖▗▄▄▄▖▗▄▖ ▗▄▄▖ \n"
+    //                              "▐▌  █ ▐▌     █  ▐▌ ▐▌▐▛▚▖▐▌▐▌ ▐▌ █ ▐▌ ▐▌▐▌ ▐▌\n"
+    //                              "▐▌  █ ▐▛▀▀▘  █  ▐▌ ▐▌▐▌ ▝▜▌▐▛▀▜▌ █ ▐▌ ▐▌▐▛▀▚▖\n"
+    //                              "▐▙▄▄▀ ▐▙▄▄▖  █  ▝▚▄▞▘▐▌  ▐▌▐▌ ▐▌ █ ▝▚▄▞▘▐▌ ▐▌\n\n");
+    color_printf(RED_TEXT, BOLD,"\n\n\t\t\t\t\t      ⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣤⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
+                                "\t\t\t\t\t      ⠀⠀⠀⠀⠀⢰⡿⠋⠁⠀⠀⠈⠉⠙⠻⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
+                                "\t\t\t\t\t      ⠀⠀⠀⠀⢀⣿⠇⠀⢀⣴⣶⡾⠿⠿⠿⢿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
+                                "\t\t\t\t\t      ⠀⠀⣀⣀⣸⡿⠀⠀⢸⣿⣇⠀⠀⠀⠀⠀⠀⠙⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
+                                "\t\t\t\t\t      ⠀⣾⡟⠛⣿⡇⠀⠀⢸⣿⣿⣷⣤⣤⣤⣤⣶⣶⣿⠇⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀\n"
+                                "\t\t\t\t\t      ⢀⣿⠀⢀⣿⡇⠀⠀⠀⠻⢿⣿⣿⣿⣿⣿⠿⣿⡏⠀⠀⠀⠀⢴⣶⣶⣿⣿⣿⣆\n"
+                                "\t\t\t\t\t      ⢸⣿⠀⢸⣿⡇⠀⠀⠀⠀⠀⠈⠉⠁⠀⠀⠀⣿⡇⣀⣠⣴⣾⣮⣝⠿⠿⠿⣻⡟\n"
+                                "\t\t\t\t\t      ⢸⣿⠀⠘⣿⡇⠀⠀⠀⠀⠀⠀⠀⣠⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠉⠀\n"
+                                "\t\t\t\t\t      ⠸⣿⠀⠀⣿⡇⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠉⠀⠀⠀⠀\n"
+                                "\t\t\t\t\t      ⠀⠻⣷⣶⣿⣇⠀⠀⠀⢠⣼⣿⣿⣿⣿⣿⣿⣿⣛⣛⣻⠉⠁⠀⠀⠀⠀⠀⠀⠀\n"
+                                "\t\t\t\t\t      ⠀⠀⠀⠀⢸⣿⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀\n"
+                                "\t\t\t\t\t      ⠀⠀⠀⠀⢸⣿⣀⣀⣀⣼⡿⢿⣿⣿⣿⣿⣿⡿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
+                                "\t\t\t\t\t      ⠀⠀⠀⠀⠀⠙⠛⠛⠛⠋⠁⠀⠙⠻⠿⠟⠋⠑⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n");
+    color_printf(RED_TEXT, BOLD, "\t\t\t\t   ▄▄▖ ▗▄▄▄▖▗▖  ▗▖▗▄▄▄▖▗▄▄▄▖▗▄▄▖  ▗▄▖▗▄▄▄▖▗▄▖ ▗▄▄▖\n"
+                                 "\t\t\t\t  ▐▌ ▐▌▐▌   ▐▛▚▖▐▌  █    █  ▐▌ ▐▌▐▌ ▐▌ █ ▐▌ ▐▌▐▌ ▐▌\n"
+                                 "\t\t\t\t  ▐▛▀▘ ▐▛▀▀▘▐▌ ▝▜▌  █    █  ▐▛▀▚▖▐▛▀▜▌ █ ▐▌ ▐▌▐▛▀▚▖\n"
+                                 "\t\t\t\t  ▐▌   ▐▙▄▄▖▐▌  ▐▌▗▄█▄▖  █  ▐▌ ▐▌▐▌ ▐▌ █ ▝▚▄▞▘▐▌ ▐▌\n\n\n\n");
 }
 
 void Loading() {
@@ -33,21 +50,20 @@ void Loading() {
 }
 
 void PrintOptions() {
-    color_printf(GREEN_TEXT,  BOLD, "Играть в акинатора               [1]\n");
-    color_printf(GREEN_TEXT,  BOLD, "Описание персонажа               [2]\n");
-    color_printf(GREEN_TEXT,  BOLD, "Сравнить персонажей              [3]\n");
-    color_printf(GREEN_TEXT,  BOLD, "Сохранить базу данных            [4]\n");
-    color_printf(GREEN_TEXT,  BOLD, "Загрузить базу данных            [5]\n");
-    color_printf(GREEN_TEXT,  BOLD, "Посмотреть дерево акинатора      [6]\n");
-    color_printf(YELLOW_TEXT, BOLD, "Выйти и сохранить                [7]\n");
-    color_printf(RED_TEXT,    BOLD, "Выйти без сохранения             [8]\n");
+    color_printf(GREEN_TEXT,  BOLD, "\t\t\t\t\tИграть в акинатора               [1]\n");
+    color_printf(GREEN_TEXT,  BOLD, "\t\t\t\t\tОписание персонажа               [2]\n");
+    color_printf(GREEN_TEXT,  BOLD, "\t\t\t\t\tСравнить персонажей              [3]\n");
+    color_printf(GREEN_TEXT,  BOLD, "\t\t\t\t\tСохранить базу данных            [4]\n");
+    color_printf(GREEN_TEXT,  BOLD, "\t\t\t\t\tЗагрузить базу данных            [5]\n");
+    color_printf(GREEN_TEXT,  BOLD, "\t\t\t\t\tПосмотреть дерево акинатора      [6]\n");
+    color_printf(YELLOW_TEXT, BOLD, "\t\t\t\t\tВыйти и сохранить                [7]\n");
+    color_printf(RED_TEXT,    BOLD, "\t\t\t\t\tВыйти без сохранения             [8]\n");
 }
 
 TYPE_OF_ERROR ChooseGameMode(Akinator* akinator) {
     int answer = 0;
-    while(1) {
-        _ModeSelection();
-        }
-
+    while(answer <= 0 || answer >= 9) {
+        _ModeSelection(answer);
+    }
     return SUCCESS;
 }
