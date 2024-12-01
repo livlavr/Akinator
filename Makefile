@@ -12,9 +12,9 @@ TARGET        = Akinator
 OBJECT        = $(patsubst %.cpp, %.o, $(SRC))
 BUILD_OBJ     = $(addprefix $(BUILD_DIR), $(OBJECT))
 
-GREEN_TEXT    = \033[1;32m
-YELLOW_TEXT   = \033[1;33m
-DEFAULT_TEXT  = \033[0m
+GREEN_COLOR    = \033[1;32m
+YELLOW_COLOR   = \033[1;33m
+DEFAULT_COLOR  = \033[0m
 
 DED_FLAGS     = -D _DEBUG -ggdb2 -std=c++17 -O0 -Wall -Wextra -Weffc++                                     \
 			    -Waggressive-loop-optimizations -Wc++14-compat -Wmissing-declarations                     \
@@ -40,18 +40,18 @@ all : $(addprefix $(SRC_DIR), $(SRC))
 	clear
 	@mkdir -p build
 	$(CXX) $(CFLAGS) $^ $(SUBMODULE_SRC) -o $(addprefix $(BUILD_DIR), $(TARGET))
-	@printf "$(GREEN_TEXT)$(TARGET) COMPILED$(DEFAULT_TEXT)\n"
+	@printf "$(GREEN_COLOR)$(TARGET) COMPILED$(DEFAULT_COLOR)\n"
 
 run : $(addprefix $(SRC_DIR), $(SRC))
 	clear
 	@mkdir -p build
 	$(CXX) $(CFLAGS) $^ $(SUBMODULE_SRC) -o $(addprefix $(BUILD_DIR), $(TARGET))
-	@printf "$(GREEN_TEXT)$(TARGET) COMPILED$(DEFAULT_TEXT)\n"
+	@printf "$(GREEN_COLOR)$(TARGET) COMPILED$(DEFAULT_COLOR)\n"
 	$(addprefix $(BUILD_DIR), $(TARGET))
 
 clean :
 	@rm -f -r $(addprefix $(BUILD_DIR), *.o) $(TARGET) *.dSYM Tree-dumps/*
-	@printf  "$(YELLOW_TEXT)$(TARGET) CLEANED$(DEFAULT_TEXT)\n"
+	@printf  "$(YELLOW_COLOR)$(TARGET) CLEANED$(DEFAULT_COLOR)\n"
 
 doxy :
 	doxygen

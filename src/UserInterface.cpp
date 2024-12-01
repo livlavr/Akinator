@@ -22,11 +22,11 @@ void PrintMenu() {
 }
 
 void PrintLogo() {
-    // color_printf(RED_TEXT, BOLD, "▗▄▄▄  ▗▄▄▄▖▗▄▄▄▖ ▗▄▖ ▗▖  ▗▖ ▗▄▖▗▄▄▄▖▗▄▖ ▗▄▄▖ \n"
+    // color_printf(RED_COLOR, BOLD, "▗▄▄▄  ▗▄▄▄▖▗▄▄▄▖ ▗▄▖ ▗▖  ▗▖ ▗▄▖▗▄▄▄▖▗▄▖ ▗▄▄▖ \n"
     //                              "▐▌  █ ▐▌     █  ▐▌ ▐▌▐▛▚▖▐▌▐▌ ▐▌ █ ▐▌ ▐▌▐▌ ▐▌\n"
     //                              "▐▌  █ ▐▛▀▀▘  █  ▐▌ ▐▌▐▌ ▝▜▌▐▛▀▜▌ █ ▐▌ ▐▌▐▛▀▚▖\n"
     //                              "▐▙▄▄▀ ▐▙▄▄▖  █  ▝▚▄▞▘▐▌  ▐▌▐▌ ▐▌ █ ▝▚▄▞▘▐▌ ▐▌\n\n");
-    color_printf(RED_TEXT, BOLD,"\n\n\t\t\t\t\t      ⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣤⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
+    color_printf(RED_COLOR, BOLD,"\n\n\t\t\t\t\t      ⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣤⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
                                 "\t\t\t\t\t      ⠀⠀⠀⠀⠀⢰⡿⠋⠁⠀⠀⠈⠉⠙⠻⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
                                 "\t\t\t\t\t      ⠀⠀⠀⠀⢀⣿⠇⠀⢀⣴⣶⡾⠿⠿⠿⢿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
                                 "\t\t\t\t\t      ⠀⠀⣀⣀⣸⡿⠀⠀⢸⣿⣇⠀⠀⠀⠀⠀⠀⠙⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
@@ -39,7 +39,7 @@ void PrintLogo() {
                                 "\t\t\t\t\t      ⠀⠀⠀⠀⢸⣿⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀\n"
                                 "\t\t\t\t\t      ⠀⠀⠀⠀⢸⣿⣀⣀⣀⣼⡿⢿⣿⣿⣿⣿⣿⡿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
                                 "\t\t\t\t\t      ⠀⠀⠀⠀⠀⠙⠛⠛⠛⠋⠁⠀⠙⠻⠿⠟⠋⠑⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n");
-    color_printf(RED_TEXT, BOLD, "\t\t\t\t   ▄▄▖ ▗▄▄▄▖▗▖  ▗▖▗▄▄▄▖▗▄▄▄▖▗▄▄▖  ▗▄▖▗▄▄▄▖▗▄▖ ▗▄▄▖\n"
+    color_printf(RED_COLOR, BOLD, "\t\t\t\t   ▄▄▖ ▗▄▄▄▖▗▖  ▗▖▗▄▄▄▖▗▄▄▄▖▗▄▄▖  ▗▄▖▗▄▄▄▖▗▄▖ ▗▄▄▖\n"
                                  "\t\t\t\t  ▐▌ ▐▌▐▌   ▐▛▚▖▐▌  █    █  ▐▌ ▐▌▐▌ ▐▌ █ ▐▌ ▐▌▐▌ ▐▌\n"
                                  "\t\t\t\t  ▐▛▀▘ ▐▛▀▀▘▐▌ ▝▜▌  █    █  ▐▛▀▚▖▐▛▀▜▌ █ ▐▌ ▐▌▐▛▀▚▖\n"
                                  "\t\t\t\t  ▐▌   ▐▙▄▄▖▐▌  ▐▌▗▄█▄▖  █  ▐▌ ▐▌▐▌ ▐▌ █ ▝▚▄▞▘▐▌ ▐▌\n\n\n\n");
@@ -50,14 +50,14 @@ void Loading() {
 }
 
 void PrintOptions() {
-    color_printf(GREEN_TEXT,  BOLD, "\t\t\t\t\tИграть в акинатора               [1]\n");
-    color_printf(GREEN_TEXT,  BOLD, "\t\t\t\t\tОписание персонажа               [2]\n");
-    color_printf(GREEN_TEXT,  BOLD, "\t\t\t\t\tСравнить персонажей              [3]\n");
-    color_printf(GREEN_TEXT,  BOLD, "\t\t\t\t\tСохранить базу данных            [4]\n");
-    color_printf(GREEN_TEXT,  BOLD, "\t\t\t\t\tЗагрузить базу данных            [5]\n");
-    color_printf(GREEN_TEXT,  BOLD, "\t\t\t\t\tПосмотреть дерево акинатора      [6]\n");
-    color_printf(YELLOW_TEXT, BOLD, "\t\t\t\t\tВыйти и сохранить                [7]\n");
-    color_printf(RED_TEXT,    BOLD, "\t\t\t\t\tВыйти без сохранения             [8]\n");
+    color_printf(GREEN_COLOR,  BOLD, "\t\t\t\t\tИграть в акинатора               [1]\n");
+    color_printf(GREEN_COLOR,  BOLD, "\t\t\t\t\tОписание персонажа               [2]\n");
+    color_printf(GREEN_COLOR,  BOLD, "\t\t\t\t\tСравнить персонажей              [3]\n");
+    color_printf(GREEN_COLOR,  BOLD, "\t\t\t\t\tСохранить базу данных            [4]\n");
+    color_printf(GREEN_COLOR,  BOLD, "\t\t\t\t\tЗагрузить базу данных            [5]\n");
+    color_printf(GREEN_COLOR,  BOLD, "\t\t\t\t\tПосмотреть дерево акинатора      [6]\n");
+    color_printf(YELLOW_COLOR, BOLD, "\t\t\t\t\tВыйти и сохранить                [7]\n");
+    color_printf(RED_COLOR,    BOLD, "\t\t\t\t\tВыйти без сохранения             [8]\n");
 }
 
 TYPE_OF_ERROR ChooseGameMode(Akinator* akinator) {

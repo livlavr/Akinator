@@ -8,7 +8,7 @@
 #include "DataBase.h"
 #include "debug_macros.h"
 
-static const char defult_filename[] = "DataBase/default.json";
+static const char defult_filename[] = "DataBase/default.txt";
 
 
 TYPE_OF_ERROR SetDataBase(Akinator* akinator, int argc, char** argv) {

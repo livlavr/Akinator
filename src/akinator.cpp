@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <inttypes.h>
+#include <stdlib.h>
 
 #include "custom_asserts.h"
 #include "tree.h"
 #include "Akinator.h"
 #include "UserInterface.h"
 #include "DataBase.h"
+#include "color_printf.h"
 
 TYPE_OF_ERROR AkinatorInit(Akinator* akinator, int argc, char** argv) {
     akinator->tree = (Tree<char*>*)calloc(1, sizeof(Tree<char*>));
@@ -67,40 +69,50 @@ TYPE_OF_ERROR PlayAkinator(Akinator* akinator, TreeNode<char*>* node) {
 
     if(!(node->left || node->right)) {
         printf("Ты загадал %s? [д/н] ", node->value);
-        switch(GetAnswer()) {
+        switch(GetAnswer(node)) {
             case yes:
-                color_printf(GREEN_TEXT, BOLD, "ГООООООООООООЛ, ну это было легко)\n");
-                sleep(1);
-
+                color_printf(GREEN_COLOR, BOLD, "ГООООООООООООЛ, ну это было легко)\n");
+                sleep(2);
                 return SUCCESS;
             case no:
                 AddCharacter(akinator, node);
-
                 return SUCCESS;
             case zaebal:
                 return SUCCESS;
+            case sosal:
+                color_printf(RED_COLOR, BOLD, "ДФЫЗФЫВЗФЫВЗХФЫХВХФЫВХВХВхХВАХЫАХВАХЫВАХВЫАХ ебать ты гомосек я хуею\n");
+                sleep(5);
+                return SUCCESS;
             default:
-                color_printf(RED_TEXT, BOLD, "Упс, что-то случилсоь :(\n");
-
+                color_printf(RED_COLOR, BOLD, "Упс, что-то случилсоь :(\n");
                 warning(false, PROGRAM_ERROR);
         }
     }
     else {
         printf("%s? [д/н] ", node->value);
-        switch(GetAnswer()) {
-        case yes:
-            PlayAkinator(akinator, node->right);
-            break;
-        case no:
-            PlayAkinator(akinator, node->left);
-            break;
+        switch(GetAnswer(node)) {
+            case yes:
+                PlayAkinator(akinator, node->right);
+                break;
+            case no:
+                PlayAkinator(akinator, node->left);
+                break;
+            case zaebal:
+                return SUCCESS;
+            case sosal:
+                color_printf(RED_COLOR, BOLD, "ДФЫЗФЫВЗФЫВЗХФЫХВХФЫВХВХВхХВАХЫАХВАХЫВАХВЫАХ ебать ты гомосек я хуею\n");
+                sleep(5);
+                return SUCCESS;
+            default:
+                color_printf(RED_COLOR, BOLD, "Упс, что-то случилсоь :(\n");
+                warning(false, PROGRAM_ERROR);
         }
     }
 
     return SUCCESS;
 }
 
-UserAnswer GetAnswer() {
+UserAnswer GetAnswer(TreeNode<char*>* node) {
     char answer[MAX_VALUE_SIZE] = ""; //TODO value size and answersize
     int  akinator_patience      = 0;
     int  tries_balance          = 0;
@@ -115,17 +127,17 @@ UserAnswer GetAnswer() {
         }
 
         else if(tries_balance > 5 && tries_balance <= 10) {
-            color_printf(GREEN_TEXT, BOLD, "Бро хватит, у тебя осталось %d попыток. "
+            color_printf(GREEN_COLOR, BOLD, "Бро хватит, у тебя осталось %d попыток. "
                     "Просто введи \"д\" или \"н\" вот сюда -> ",
                     tries_balance);
         }
 
         else if(tries_balance > 1){
-            color_printf(YELLOW_TEXT, BOLD, "Ты решил мне нервы потрепать? Ок. Осталось %d попыток [д/н] ",
+            color_printf(YELLOW_COLOR, BOLD, "Ты решил мне нервы потрепать? Ок. Осталось %d попыток [д/н] ",
                     tries_balance);
         }
         else if(tries_balance == 1){
-            color_printf(RED_TEXT, BOLD, "Даю тебе последний шанс, шутник хуев [д/н] ");
+            color_printf(RED_COLOR, BOLD, "Даю тебе последний шанс, шутник хуев [д/н] ");
         }
 
         akinator_patience++;
@@ -133,21 +145,23 @@ UserAnswer GetAnswer() {
 
     if(answer[1] != YES && answer[1] != NO) {
         PrintHui();
-        color_printf(RED_TEXT, BOLD, "Всё, заебал...\n");
+        color_printf(RED_COLOR, BOLD, "Всё, заебал...\n");
         sleep(4);
 
         return zaebal;
     }
     else {
-        if(answer[1] == YES) return yes;
+        if(answer[1] == YES) {
+            _Sosal();
+        }
         else                 return no;
-    }
+        }
 
     return no;
 }
 
 void PrintHui() {
-    color_printf(RED_TEXT, BOLD,
+    color_printf(RED_COLOR, BOLD,
 "⠀⠀⠀⠀⠀⠀⢀⣤⣶⣶⣾⣿⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
 "⠀⠀⠀⠀⣠⣾⡿⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
 "⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⣰⣿⠆⠀⠀⠀⠀⠀⠀⠀\n"
@@ -186,12 +200,12 @@ TYPE_OF_ERROR AddCharacter(Akinator* akinator, TreeNode<char*>* node) {
     char* character = (char*)calloc(MAX_VALUE_SIZE, sizeof(char));
     char* attribute = (char*)calloc(MAX_VALUE_SIZE, sizeof(char));
 
-    color_printf(YELLOW_TEXT, BOLD, "\nКошачий случай... А кого ты загадал?\n");
+    color_printf(YELLOW_COLOR, BOLD, "\nКошачий случай... А кого ты загадал?\n");
     _ScanAnswer(character); //TODO how to do normal (const) scanf limit
     _WhaitForValidAnswer(FindValueInTree(akinator->tree->root, character, Hash(character)),
                         character, SUCCESS, "Упс, в акинаторе уже есть %s, придумай что-нибудь другое\n");
 
-    color_printf(YELLOW_TEXT, BOLD, "Хмхмхм, а чем это отличается от того, что я предложил?\n");
+    color_printf(YELLOW_COLOR, BOLD, "Хмхмхм, а чем это отличается от того, что я предложил?\n");
     _ScanAnswer(attribute);
     _WhaitForValidAnswer(FindValueInTree(akinator->tree->root, attribute, Hash(attribute)),
                         attribute, SUCCESS, "Упс, в акинаторе уже есть %s, придумай что-нибудь другое\n");
@@ -203,7 +217,7 @@ TYPE_OF_ERROR AddCharacter(Akinator* akinator, TreeNode<char*>* node) {
         LinkCharacter    (akinator, node, attribute, character);
     }
 
-    color_printf(GREEN_TEXT, BOLD, "Окей, я запомнил ;)\n");
+    color_printf(GREEN_COLOR, BOLD, "Окей, я запомнил ;)\n");
 
     sleep(1);
 
@@ -293,7 +307,7 @@ TYPE_OF_ERROR LinkCharacter(Akinator* akinator, TreeNode<char*>* node,
 TYPE_OF_ERROR GetDescription(Akinator* akinator) {
     check_expression(akinator, POINTER_IS_NULL);
 
-    color_printf(GREEN_TEXT, BOLD, "Чьё описание хочешь?\n");
+    color_printf(GREEN_COLOR, BOLD, "Чьё описание хочешь?\n");
 
     stack* way_to_node    = NULL;
     stack_init(way_to_node, 10);
@@ -337,13 +351,13 @@ TYPE_OF_ERROR PrintDescription(stack* way_to_node, TreeNode<char*>* node) {
     int direction = 0;
     pop(way_to_node, &direction);
     if(direction == RIGHT_SIDE) {
-        if(stack_size(way_to_node)) color_printf(GREEN_TEXT, REGULAR, "%s, ", node->value);
-        else                        color_printf(GREEN_TEXT, REGULAR, "%s ", node->value);
+        if(stack_size(way_to_node)) color_printf(GREEN_COLOR, REGULAR, "%s, ", node->value);
+        else                        color_printf(GREEN_COLOR, REGULAR, "%s ", node->value);
         PrintDescription(way_to_node, node->right);
     }
     else {
-        if(stack_size(way_to_node)) color_printf(RED_TEXT, REGULAR, "не %s, ", node->value);
-        else                        color_printf(RED_TEXT, REGULAR, "не %s ", node->value);
+        if(stack_size(way_to_node)) color_printf(RED_COLOR, REGULAR, "не %s, ", node->value);
+        else                        color_printf(RED_COLOR, REGULAR, "не %s ", node->value);
         PrintDescription(way_to_node, node->left);
     }
 
@@ -378,7 +392,7 @@ TreeNode<char*>* FindCharacter(Akinator* akinator, stack* way_to_node) {
     FindNode(akinator->tree->root, character_node, &original_node);
 
     while(!original_node) {
-        color_printf(RED_TEXT, REGULAR, "Слушай a эо ты бля я ээээээ таких не знаю давай другого загадывай (prod max zubaha)\n");
+        color_printf(RED_COLOR, REGULAR, "Слушай a эо ты бля я ээээээ таких не знаю давай другого загадывай (prod max zubaha)\n");
         _ScanAnswer(character);
         character_node->value = character;
         character_node->hash  = Hash(character);
@@ -395,7 +409,7 @@ TreeNode<char*>* FindCharacter(Akinator* akinator, stack* way_to_node) {
 TYPE_OF_ERROR CompareCharacters(Akinator* akinator) {
     check_expression(akinator, POINTER_IS_NULL);
 
-    color_printf(GREEN_TEXT, BOLD, "Введи первого персонажа для сравнения\n");
+    color_printf(GREEN_COLOR, BOLD, "Введи первого персонажа для сравнения\n");
 
     stack* way1            = NULL;
     stack_init(way1, 10);
@@ -403,7 +417,7 @@ TYPE_OF_ERROR CompareCharacters(Akinator* akinator) {
 
     node1 = FindCharacter(akinator, way1);
 
-    color_printf(GREEN_TEXT, BOLD, "С кем мне его сравнить?\n");
+    color_printf(GREEN_COLOR, BOLD, "С кем мне его сравнить?\n");
 
     stack* way2          = NULL;
     stack_init(way2, 10);
@@ -411,7 +425,7 @@ TYPE_OF_ERROR CompareCharacters(Akinator* akinator) {
 
     node2 = FindCharacter(akinator, way2);
 
-    color_printf(YELLOW_TEXT, BOLD, "%s и %s похожи тем, что они:\n", node1->value, node2->value);
+    color_printf(YELLOW_COLOR, BOLD, "%s и %s похожи тем, что они:\n", node1->value, node2->value);
     PrintComparing(akinator->tree->root, way1, way2, node1->value, node2->value);
     printf("\n");
 
@@ -439,20 +453,20 @@ TYPE_OF_ERROR PrintComparing(TreeNode<char*>* node, stack* way1, stack* way2, ch
     pop(way2, &direction2);
     if(direction1 == direction2) {
         if(direction1 == RIGHT_SIDE) {
-            if(stack_size(way1)) color_printf(GREEN_TEXT, REGULAR, "%s, ", node->value);
-            else                 color_printf(GREEN_TEXT, REGULAR, "%s ",  node->value);
+            if(stack_size(way1)) color_printf(GREEN_COLOR, REGULAR, "%s, ", node->value);
+            else                 color_printf(GREEN_COLOR, REGULAR, "%s ",  node->value);
             PrintComparing(node->right, way1, way2, value1, value2);
         }
         else {
-        if(stack_size(way1)) color_printf(RED_TEXT, REGULAR, "не %s, ", node->value);
-        else                 color_printf(RED_TEXT, REGULAR, "не %s ",  node->value);
+        if(stack_size(way1)) color_printf(RED_COLOR, REGULAR, "не %s, ", node->value);
+        else                 color_printf(RED_COLOR, REGULAR, "не %s ",  node->value);
         PrintComparing(node->left, way1, way2, value1, value2);
         }
     }
     else {
         push(way1, direction1);
         push(way2, direction2);
-        color_printf(YELLOW_TEXT, BOLD, "\nОтличаются тем, что:");
+        color_printf(YELLOW_COLOR, BOLD, "\nОтличаются тем, что:");
         printf("\n%s - ", value1);
         PrintDescription(way1, node);
         printf("\n%s - ", value2);
